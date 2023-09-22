@@ -24,6 +24,7 @@ main{
 }
 
 .box-img{
+  position: relative;
   height: 100%;
   width: 80%;
 }
@@ -32,6 +33,14 @@ main{
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+.box-text{
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  color: white;
+  text-align: right;
 }
 
 .hide{
