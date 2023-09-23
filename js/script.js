@@ -52,9 +52,7 @@ for(let i = 0; i < images.length; i++){
   itemsMiniImg[i].style.height = heightMini + "%";
 }
 
-itemsImg[indexImg].classList.remove("hide");
-itemsText[indexImg].classList.remove("hide");
-itemsMiniImg[indexImg].classList.add("active");
+endClick();
 
 let change;
 
@@ -67,9 +65,7 @@ arrowTop.addEventListener("click", function(){
   
   const clock = setInterval(function(){
     
-    itemsImg[indexImg].classList.add("hide");
-    itemsText[indexImg].classList.add("hide");
-    itemsMiniImg[indexImg].classList.remove("active");
+    startClick()
 
     if(indexImg === 0){
       indexImg = images.length - 1;
@@ -80,9 +76,7 @@ arrowTop.addEventListener("click", function(){
       console.log(itemsImg[indexImg]);
     }
 
-    itemsImg[indexImg].classList.remove("hide");
-    itemsText[indexImg].classList.remove("hide");
-    itemsMiniImg[indexImg].classList.add("active");
+    endClick();
 
     if(change){
       clearInterval(clock);
@@ -100,9 +94,7 @@ arrowBot.addEventListener("click", function(){
 
   const clock = setInterval(function(){
 
-    itemsImg[indexImg].classList.add("hide");
-    itemsText[indexImg].classList.add("hide");
-    itemsMiniImg[indexImg].classList.remove("active");
+    startClick()
 
     if(indexImg === (images.length - 1)){
       indexImg = 0;
@@ -113,30 +105,32 @@ arrowBot.addEventListener("click", function(){
       console.log(itemsImg[indexImg]);
     }
 
-
-    itemsImg[indexImg].classList.remove("hide");
-    itemsText[indexImg].classList.remove("hide");
-    itemsMiniImg[indexImg].classList.add("active");
+    endClick();
 
     if(!change){
       clearInterval(clock);
-      
     }
   }, 1000);
 
 });
 
-
 for(let i = 0; i < images.length; i++){
   itemsMiniImg[i].addEventListener("click", function(){
-    itemsImg[indexImg].classList.add("hide");
-    itemsText[indexImg].classList.add("hide");
-    itemsMiniImg[indexImg].classList.remove("active");
+    startClick();
     indexImg = i;
-    itemsImg[indexImg].classList.remove("hide");
-    itemsText[indexImg].classList.remove("hide");
-    itemsMiniImg[indexImg].classList.add("active");
+    endClick();
   });
 }
 
+function startClick(){
+  itemsImg[indexImg].classList.add("hide");
+  itemsText[indexImg].classList.add("hide");
+  itemsMiniImg[indexImg].classList.remove("active");
+}
+
+function endClick(){
+  itemsImg[indexImg].classList.remove("hide");
+  itemsText[indexImg].classList.remove("hide");
+  itemsMiniImg[indexImg].classList.add("active");
+}
 
