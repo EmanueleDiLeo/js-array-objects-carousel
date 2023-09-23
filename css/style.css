@@ -61,12 +61,12 @@ main{
   z-index: 2;
 }
 
-.arrow-top{
+#arrow-top{
   left: 88%;
   top: 15px;
 }
 
-.arrow-bot{
+#arrow-bot{
   left: 88%;
   bottom: 15px;
 }

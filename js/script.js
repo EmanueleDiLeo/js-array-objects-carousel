@@ -26,17 +26,16 @@ const images = [
   }
 ];
 
-const arrowTop = document.querySelector(".arrow-top");
-const arrowBot = document.querySelector(".arrow-bot");
+const arrowTop = document.querySelector("#arrow-top");
+const arrowBot = document.querySelector("#arrow-bot");
 const boxImg = document.querySelector(".box-img");
 const miniImg = document.querySelector(".mini-img")
 
 let indexImg = 0;
-console.log(images.length);
 let heightMini = 100 / images.length;
 
 images.forEach((element) => {
-  boxImg.innerHTML += `<img class="hide item" src="${element.image}" alt="${element.title}">
+  boxImg.innerHTML += ` <img class="hide item" src="${element.image}" alt="${element.title}">
                         <div class="box-text hide">
                           <h2>${element.title}</h2>
                           <p>${element.text}</p> 
@@ -57,47 +56,73 @@ itemsImg[indexImg].classList.remove("hide");
 itemsText[indexImg].classList.remove("hide");
 itemsMiniImg[indexImg].classList.add("active");
 
+let change;
+
 // EVENTO CLICK FRECCIA SU
 arrowTop.addEventListener("click", function(){
-  itemsImg[indexImg].classList.add("hide");
-  itemsText[indexImg].classList.add("hide");
-  itemsMiniImg[indexImg].classList.remove("active");
 
-  if(indexImg === 0){
-    indexImg = images.length - 1;
-    console.log(itemsImg[indexImg]);
-  }
-  else{
-    indexImg--;
-    console.log(itemsImg[indexImg]);
-  }
+  change = false;
+  arrowTop.style.display = "none";
+  arrowBot.style.display = "flex";
+  
+  const clock = setInterval(function(){
+    
+    itemsImg[indexImg].classList.add("hide");
+    itemsText[indexImg].classList.add("hide");
+    itemsMiniImg[indexImg].classList.remove("active");
 
-  itemsImg[indexImg].classList.remove("hide");
-  itemsText[indexImg].classList.remove("hide");
-  itemsMiniImg[indexImg].classList.add("active");
+    if(indexImg === 0){
+      indexImg = images.length - 1;
+      console.log(itemsImg[indexImg]);
+    }
+    else{
+      indexImg--;
+      console.log(itemsImg[indexImg]);
+    }
+
+    itemsImg[indexImg].classList.remove("hide");
+    itemsText[indexImg].classList.remove("hide");
+    itemsMiniImg[indexImg].classList.add("active");
+
+    if(change){
+      clearInterval(clock);
+    }
+  }, 1000);
 
 });
 
 // EVENTO CLICK FRECCIA GIU
 arrowBot.addEventListener("click", function(){
 
-  itemsImg[indexImg].classList.add("hide");
-  itemsText[indexImg].classList.add("hide");
-  itemsMiniImg[indexImg].classList.remove("active");
+  change = true;
+  arrowBot.style.display = "none";
+  arrowTop.style.display = "flex";
 
-   if(indexImg === (images.length - 1)){
-     indexImg = 0;
-     console.log(itemsImg[indexImg]);
-   }
-   else{
-     indexImg++;
-     console.log(itemsImg[indexImg]);
-   }
+  const clock = setInterval(function(){
+
+    itemsImg[indexImg].classList.add("hide");
+    itemsText[indexImg].classList.add("hide");
+    itemsMiniImg[indexImg].classList.remove("active");
+
+    if(indexImg === (images.length - 1)){
+      indexImg = 0;
+      console.log(itemsImg[indexImg]);
+    }
+    else{
+      indexImg++;
+      console.log(itemsImg[indexImg]);
+    }
 
 
-  itemsImg[indexImg].classList.remove("hide");
-  itemsText[indexImg].classList.remove("hide");
-  itemsMiniImg[indexImg].classList.add("active");
+    itemsImg[indexImg].classList.remove("hide");
+    itemsText[indexImg].classList.remove("hide");
+    itemsMiniImg[indexImg].classList.add("active");
+
+    if(!change){
+      clearInterval(clock);
+      
+    }
+  }, 1000);
 
 });
 
