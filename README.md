@@ -16,6 +16,9 @@ Al click della thumb cambia l’immagine attiva
 ##  Svolgimento
 
 1. passare da un array a una lista di oggetti
-2. camciare il for per indice con il forEach e funzione arrow
-3. aggiundere un box text
-4. cambiare al click il testo
+1. camciare il for per indice con il forEach e funzione arrow
+1. aggiundere un box text
+1. cambiare al click il testo
+1. aggiungere il set interval al click della freccia
+1. nascondere la freccia che clicco e far vedere l'altra freccia
+1. aggiungo un for che aggiunge il click della thumb e cambia l'immagine 

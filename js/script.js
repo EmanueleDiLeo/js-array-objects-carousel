@@ -126,3 +126,17 @@ arrowBot.addEventListener("click", function(){
 
 });
 
+
+for(let i = 0; i < images.length; i++){
+  itemsMiniImg[i].addEventListener("click", function(){
+    itemsImg[indexImg].classList.add("hide");
+    itemsText[indexImg].classList.add("hide");
+    itemsMiniImg[indexImg].classList.remove("active");
+    indexImg = i;
+    itemsImg[indexImg].classList.remove("hide");
+    itemsText[indexImg].classList.remove("hide");
+    itemsMiniImg[indexImg].classList.add("active");
+  });
+}
+
+
