@@ -43,7 +43,6 @@ images.forEach((element) => {
   miniImg.innerHTML += `<img class="item-mini" src="${element.image}" alt="${element.title}">`;
 });
 
-
 const itemsImg = document.getElementsByClassName("item");
 const itemsText = document.getElementsByClassName("box-text");
 const itemsMiniImg = document.getElementsByClassName("item-mini");
@@ -52,11 +51,11 @@ for(let i = 0; i < images.length; i++){
   itemsMiniImg[i].style.height = heightMini + "%";
 }
 
-endClick();
+toggle();
 
 let change;
 
-// EVENTO CLICK FRECCIA SU
+// EVENT CLICK CLICK TOP
 arrowTop.addEventListener("click", function(){
 
   change = false;
@@ -64,28 +63,26 @@ arrowTop.addEventListener("click", function(){
   arrowBot.style.display = "flex";
   
   const clock = setInterval(function(){
-    
-    startClick()
-
-    if(indexImg === 0){
-      indexImg = images.length - 1;
-      console.log(itemsImg[indexImg]);
-    }
-    else{
-      indexImg--;
-      console.log(itemsImg[indexImg]);
-    }
-
-    endClick();
-
     if(change){
       clearInterval(clock);
+    }
+    else{
+      toggle();
+      if(indexImg === 0){
+        indexImg = images.length - 1;
+        console.log(itemsImg[indexImg]);
+      }
+      else{
+        indexImg--;
+        console.log(itemsImg[indexImg]);
+      }
+      toggle();
     }
   }, 1000);
 
 });
 
-// EVENTO CLICK FRECCIA GIU
+// EVENT CLICK BOT
 arrowBot.addEventListener("click", function(){
 
   change = true;
@@ -93,22 +90,20 @@ arrowBot.addEventListener("click", function(){
   arrowTop.style.display = "flex";
 
   const clock = setInterval(function(){
-
-    startClick()
-
-    if(indexImg === (images.length - 1)){
-      indexImg = 0;
-      console.log(itemsImg[indexImg]);
-    }
-    else{
-      indexImg++;
-      console.log(itemsImg[indexImg]);
-    }
-
-    endClick();
-
     if(!change){
       clearInterval(clock);
+    }
+    else{
+      toggle();
+      if(indexImg === (images.length - 1)){
+        indexImg = 0;
+        console.log(itemsImg[indexImg]);
+      }
+      else{
+        indexImg++;
+        console.log(itemsImg[indexImg]);
+      }
+      toggle();
     }
   }, 1000);
 
@@ -116,21 +111,15 @@ arrowBot.addEventListener("click", function(){
 
 for(let i = 0; i < images.length; i++){
   itemsMiniImg[i].addEventListener("click", function(){
-    startClick();
+    toggle();
     indexImg = i;
-    endClick();
+    toggle();
   });
 }
 
-function startClick(){
-  itemsImg[indexImg].classList.add("hide");
-  itemsText[indexImg].classList.add("hide");
-  itemsMiniImg[indexImg].classList.remove("active");
-}
-
-function endClick(){
-  itemsImg[indexImg].classList.remove("hide");
-  itemsText[indexImg].classList.remove("hide");
-  itemsMiniImg[indexImg].classList.add("active");
+function toggle(){
+  itemsImg[indexImg].classList.toggle("hide");
+  itemsText[indexImg].classList.toggle("hide");
+  itemsMiniImg[indexImg].classList.toggle("active");
 }
 
